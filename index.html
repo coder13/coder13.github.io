@@ -44,7 +44,7 @@ var dragStartX, dragStartY;
 var currentX, currentY;
 var context;
 var canvas;
-var cwidth=300, cheight=300; // size of canvas
+var cwidth = 300, cheight = 300; // size of canvas
 
 var n = 3;
 var squares;
@@ -93,6 +93,7 @@ function loadAll() {
     canvas.addEventListener("touchstart", mouseDownListener, false);
     canvas.addEventListener("mousedown", mouseDownListener, false);
     canvas.addEventListener("mousemove", mouseMoveListener, false);
+
     window.addEventListener("touchcancel", mouseUpListener, false);
     window.addEventListener("touchend", mouseUpListener, false);
     window.addEventListener("touchleave", mouseUpListener, false);
@@ -631,20 +632,6 @@ function stopTimer(good) {
             times[n].push(time);
             // figure out averages and display
             displayTimes(false, time);
-        
-            console.log({size: n, time: time});
-            $.ajax('users/Caleb', {
-                type: "POST",
-                data: {size: n, time: time},
-                dataType: 'json',
-                statusCode: {
-                    404: function() {
-                      alert( "page not found" );
-                    }
-                }
-            }).done(function(data) {
-                console.log('recieved: ', data);
-            });
         }
     }
 }
@@ -754,11 +741,7 @@ function loadStuff() {
         if (tmp != null) 
             pEvent = tmp;
 
-        $.getJSON( "users/Caleb", function(data) {
-            times = data;
-            displayTimes(true);
-        });
-
+        times = JSON.parse(window.localStorage.getItem("switchtile_times")) || {n:[]};
         tmp = window.localStorage.getItem("switchtile_relayData");
         if (tmp != null) 
             relayData = tmp;
