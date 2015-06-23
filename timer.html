@@ -8,14 +8,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
 
 	<script id="timeTemplate" type="text/template">
-		<span><%= time %></span>
+		<span><%= pretty(time) %></span>
 		<button class="plus2">+2</button>
 		<button class="DNF">DNF</button>
 		<button class="Delete">Delete</button>
 	</script>
 
 	<script id="timerTemplate" type="text/template">
-		<span id="time"><%= time %></span>
+		<span id="time"><%= pretty(time) %></span>
 	</script>
 	
 </head>
@@ -28,6 +28,69 @@
 			Space: 13
 			Escape: 27
 		*/
+		function now () {
+			return (window.performance && window.performance.now
+					? window.performance.now.bind(window.performance)
+					: Date.now)().toFixed();
+		}
+
+		function pretty (time) {
+			if (time < 0)
+				return 'DNF';
+
+			time = Math.round(time / 10);
+			var bits = time % 100;
+			time = (time - bits) / 100;
+			var secs = time % 60;
+			var mins = ((time - secs) / 60) % 60;
+
+			var out = [bits];
+			if (bits < 10) {
+				out.push('0');
+			}
+			out.push('.');
+			out.push(secs);
+			if (secs < 10 && mins > 0) {
+				out.push('0');
+			}
+			if (mins > 0) {
+				out.push(':');
+				out.push(mins)
+			}
+			return out.reverse().join('');
+		}
+
+		var requestAnimationFrame =
+		    window.requestAnimationFrame || window.webkitRequestAnimationFrame ||
+		    window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+		    window.msRequestAnimationFrame ||
+		    function(fn) { return window.setTimeout(fn, 1000 / 60); };
+
+		var cancelAnimationFrame =
+		    window.cancelAnimationFrame || window.webkitCancelAnimationFrame ||
+		    window.mozCancelRequestAnimationFrame ||
+		    window.oCancelRequestAnimationFrame ||
+		    window.msCancelRequestAnimationFrame || window.clearTimeout;
+
+
+		function setInterval(fn, delay) {
+			// Have to use an object here to store a reference
+			// to the requestAnimationFrame ID.
+			var handle = {};
+
+			function interval() {
+				fn.call();
+				handle.value = requestAnimationFrame(interval)
+			}
+
+		 	handle.value = requestAnimationFrame(interval);
+			return handle;
+		}
+
+		function clearInterval(interval) {
+			cancelAnimationFrame(interval.value);
+		}
+
 		window.App = {
 			Models: {},
 			Collections: {},
@@ -36,7 +99,7 @@
 
 		App.Models.Time = Backbone.Model.extend( {
 			defaults: {
-				time: 0.00,
+				time: 0,
 				plus2: false,
 				DNF: false
 			}
@@ -49,13 +112,20 @@
 		App.Views.Session = Backbone.View.extend({
 			tagName: 'ul',
 
-			render: function() {
-				this.collection.each(function(time){
-					var timeView = new App.Views.Time({ model: time });
+			render: function () {
+				this.collection.each(function(time) {
+					var timeView = new App.Views.Time({model: time});
 					this.$el.append(timeView.render().el);
 				}, this);
 
 				return this;
+			},
+
+			add: function (time) {
+				this.collection.push(time);
+				var timeModel = new App.Models.Time(time);
+				var timeView = new App.Views.Time({model: timeModel});
+				this.$el.append(timeView.render().el);
 			}
 		});
 
@@ -71,11 +141,7 @@
 		});
 
 
-		var session = new App.Collections.Session([
-			// {time: 5.25, plus2: false, DNF: false},
-			// {time: 5.61, plus2: false, DNF: false},
-			// {time: 5.81, plus2: false, DNF: false}
-		]);
+		var session = new App.Collections.Session();
 
 		var sessionView = new App.Views.Session({collection: session});
 		$('#times').append(sessionView.render().el);
@@ -90,13 +156,15 @@
 			active: false,
 			time: 0,
 
-			initialize: function () {
+			initialize: function (options) {
+				if (options.addTime)
+					this.addTime = options.addTime;
 				console.log(1, arguments);
 			},
 			start: function () {
 				if (!this.active) {
 					this.active = true;
-					timer.now = Date.now();
+					timer.now = now();
 					this.timerObj = setInterval(_.bind(this.tick, this), 10);
 				}
 			},
@@ -111,7 +179,7 @@
 			},
 
 			tick: function () {
-				this.time = Date.now() - timer.now;
+				this.time = (now() - timer.now);
 				this.trigger('change', this);
 			}
 		});
@@ -145,13 +213,13 @@
 			},
 
 			render: function () {
-				this.$el.html(this.template({time: this.model.time/1000}));
+				this.$el.html(this.template({time: this.model.time}));
 				return this;
 			}
 		});
 
 		function AddTime(time) {
-			console.log(time);
+			sessionView.add({time: time});
 		}
 
 		var timer = new App.Models.Timer({accuracy: 2, input: 'timer', inspection: 15, phase: 1, addTime: AddTime});
