@@ -15,7 +15,7 @@
 	</script>
 
 	<script id="timerTemplate" type="text/template">
-		<span><%= time %></span>
+		<span id="time"><%= time %></span>
 	</script>
 	
 </head>
@@ -93,27 +93,25 @@
 			initialize: function () {
 				console.log(1, arguments);
 			},
-
-			keyPress: function () {
-				if (!this.active)
-					this.start();
-				else
-					this.stop();
-			},
 			start: function () {
-				this.active = true;
-				this.timerObj = setInterval(_.bind(this.tick, this), 10);
+				if (!this.active) {
+					this.active = true;
+					timer.now = Date.now();
+					this.timerObj = setInterval(_.bind(this.tick, this), 10);
+				}
 			},
 			stop: function() {
-				this.active = false;
-				clearInterval(this.timerObj);
-				if (this.addTime)
-					this.addTime(this.time);
-				this.time = 0;
+				if (this.active) {
+					this.active = false;
+					clearInterval(this.timerObj);
+					if (this.addTime)
+						this.addTime(this.time);
+					this.time = 0;
+				}
 			},
 
 			tick: function () {
-				this.time += 1;
+				this.time = Date.now() - timer.now;
 				this.trigger('change', this);
 			}
 		});
@@ -122,20 +120,38 @@
 			template: _.template($('#timerTemplate').html()),
 
 			initialize: function () {
-				$(document).bind('keypress', _.bind(this.model.keyPress, this.model));
+				$(document).bind('keyup', _.bind(this.keyUp, this));
+				$(document).bind('keydown', _.bind(this.keyDown, this));
 
 				this.model.bind('change', _.bind(this.render, this));
 				this.$el.append(this.render().el);
 			},
+			keyDown: function (e) {
+				if (e.keyCode == 32) {
+					if (this.timing) {
+						this.model.stop();
+					}
+				}
+			},
+			keyUp: function (e) {
+				if (e.keyCode == 32) {
+					if (!this.timing) {
+						this.model.start();
+						this.timing = true;
+					} else {
+						this.timing = false;
+					}
+				}
+			},
 
 			render: function () {
-				this.$el.html(this.template({time: this.model.time/10}));
+				this.$el.html(this.template({time: this.model.time/1000}));
 				return this;
 			}
 		});
 
 		function AddTime(time) {
-			console.log(time)
+			console.log(time);
 		}
 
 		var timer = new App.Models.Timer({accuracy: 2, input: 'timer', inspection: 15, phase: 1, addTime: AddTime});
