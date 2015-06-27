@@ -201,22 +201,17 @@ App.Models.Timer = Backbone.Model.extend({
 });
 
 
-// var Timer = React.createClass({
-// 	style: {fontSize: '48px', margin: '2px'},
-// 	getInitialState: function() {
-// 		return {time: 0, timing: false, down: false};
-// 	},
+var Timer = React.createClass({
+	style: {fontSize: '48px', margin: '2px'},
 	
-// 	componentDidMount: function() {
-// 		$(document).bind('keyup', _.bind(this.keyUp, this));
-// 		$(document).bind('keydown', _.bind(this.keyDown, this));
-// 	},
+	componentDidMount: function() {},
 
-// 	render: function() {
-// 		var style = {color: this.state.down?'green':'black'};
-// 		return (<p style={_.extend(style, this.style)}>{pretty(this.state.time)}</p>);
-// 	}
-// });
+	render: function() {
+		console.log(this);
+		var style = {color: this.props.down?'green':'black'};
+		return (<p style={_.extend(style, this.style)}>{pretty(this.props.time)}</p>);
+	}
+});
 
 App.Views.Timer = Backbone.View.extend({
 	template: _.template($('#timerTemplate').html()),
@@ -232,23 +227,27 @@ App.Views.Timer = Backbone.View.extend({
 		if (e.keyCode == 32) {
 			if (this.timing) {
 				this.model.stop();
+			} else {
+				this.down = true;
 			}
 		}
+		this.render();
 	},
 	keyUp: function (e) {
 		if (e.keyCode == 32) {
 			if (!this.timing) {
 				this.model.start();
+				this.down = false
 				this.timing = true;
 			} else {
 				this.timing = false;
 			}
 		}
+		this.render();
 	},
 
 	render: function () {
-		this.$el.html(this.template({time: this.model.time}));
-		// React.render(<Timer/>, this.el);
+		React.render(<Timer time={this.model.time} down={this.down}/>, this.el);
 		return this;
 	}
 });
