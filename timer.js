@@ -87,7 +87,7 @@ App.Models.Time = Backbone.Model.extend( {
 });
 
 App.Views.Time = Backbone.View.extend({
-	tagName: 'li',
+	tagName: 'span',
 	template: _.template($('#timeTemplate').html()),
 
 	events: {'click .Delete': 'delete'},
@@ -108,29 +108,38 @@ App.Views.Time = Backbone.View.extend({
 });
 
 App.Collections.Session = Backbone.Collection.extend({
+	defaults: {
+		name: "default"
+	},
 	model: App.Models.Time,
 
-	average: function () {
-		return 0;
+	mean: function () {
+		var total = 0;
+		this.toArray().forEach(function (i) {
+			total += i.attributes.time;
+		});
+		return total != 0 ? total / this.length : 0;
 	}
 });
 
 App.Views.Session = Backbone.View.extend({
-	tagName: 'ul',
+	tagName: 'table',
 
 	template: _.template($("#sessionTemplate").html()),
+	rowTemplate: _.template($("#sessionRowTemplate").html()),
 
 	initialize: function () {
+		this.collection.bind('change', _.bind(this.render, this));
+
 		this.$el.append(this.render().el);
 		
-		this.collection.each(function(time) {
-			var timeView = new App.Views.Time({model: time, session: this.collection});
-			$("#times").append(timeView.render().el);
-		}, this);
 	},
 
 	render: function () {
-		this.$el.html(this.template({average: this.collection.average()}));
+		this.$el.html(this.template({mean: this.collection.mean()}, this.collection.toJSON()));
+		this.collection.each(function(time, index) {
+			this._addModel(time, index);
+		}, this);
 
 		return this;
 	},
@@ -138,12 +147,20 @@ App.Views.Session = Backbone.View.extend({
 	add: function (time) {
 		var timeModel = new App.Models.Time(time);
 		this.collection.push(timeModel);
+		// this._addModel(timeModel, this.collection.length-1);
+
+		this.collection.trigger('change');
+	},
+
+	_addModel: function (timeModel, index) {
 		var timeView = new App.Views.Time({model: timeModel, session: this.collection});
-		$("#times").append(timeView.render().el);
+		var time = timeView.template(timeView.model.toJSON())
+		var row = this.rowTemplate({index: index, time: time});
+		$("#times").append(row);
 	}
 });
 
-var session = new App.Collections.Session();
+var session = new App.Collections.Session([]);
 var sessionView = new App.Views.Session({el: $("#timeContainer"), collection: session});
 
 App.Models.Timer = Backbone.Model.extend({
@@ -183,6 +200,24 @@ App.Models.Timer = Backbone.Model.extend({
 	}
 });
 
+
+// var Timer = React.createClass({
+// 	style: {fontSize: '48px', margin: '2px'},
+// 	getInitialState: function() {
+// 		return {time: 0, timing: false, down: false};
+// 	},
+	
+// 	componentDidMount: function() {
+// 		$(document).bind('keyup', _.bind(this.keyUp, this));
+// 		$(document).bind('keydown', _.bind(this.keyDown, this));
+// 	},
+
+// 	render: function() {
+// 		var style = {color: this.state.down?'green':'black'};
+// 		return (<p style={_.extend(style, this.style)}>{pretty(this.state.time)}</p>);
+// 	}
+// });
+
 App.Views.Timer = Backbone.View.extend({
 	template: _.template($('#timerTemplate').html()),
 
@@ -213,6 +248,7 @@ App.Views.Timer = Backbone.View.extend({
 
 	render: function () {
 		this.$el.html(this.template({time: this.model.time}));
+		// React.render(<Timer/>, this.el);
 		return this;
 	}
 });

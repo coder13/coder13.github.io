@@ -6,21 +6,55 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
 
 	<style>
-	ul {
-		border: 1px solid black;
-		width: 200px;
-		background-color: #aaa;
-		padding: 0px;
+	body {
+		margin: 0px;
+		background: #bbb;
 	}
 
-	ul li {
-		list-style: none;
+	html, body {
+		height: 100%;
+	}
+
+	#header {
+		height: 200px;
+	}
+
+	table {
+		border-collapse: collapse;
+		border: 1px solid black;
+		background-color: #aaa;
+		padding: 0px;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	table td, table tr, table th {
+		border: 1px solid black;
+
+	}
+
+	th {
+		text-align: left;
 		padding: 2px;
 	}
 
-	button /*{
+	table {
+		width: 100%;
+	}
+
+	#timeContainer {
+		height: 100%;
+		overflow: scroll;
+		overflow-x: hidden;
+		background-color: #aaa;
+		padding: 2px
+	}
+
+	/*button {
 		font-family: Arial;
 		text-decoration: none;
 		border: 1px solid #eee;
@@ -29,41 +63,50 @@
 		margin: 0px;
 	}*/
 
-	div#timeContainer {
-		height: 100%;
-		overflow: scroll;
-		overflow-x: hidden;
-	}
-
 	div.container {
 		float: left;
 	}
 	
+	#timer {
+		padding: 100px;
+		font-size: 48px;
+		text-align: center;
+	}
 
 	</style>
-	<script id="timeTemplate" type="text/template">
-		<span class="time"><%= pretty(time) %></span>
-		<button class="plus2">+2</button>
-		<button class="DNF">DNF</button>
-		<button class="Delete">Delete</button>
-	</script>
+	<script id="timeTemplate" type="text/template"><%= pretty(time) %></script>
 
 	<script id="sessionTemplate" type="text/template">
-		<p>Times:</p>
-		<ul id="times"></ul>
-		<p>Session Average:<%= pretty(average) %></p>
+		<p>Session: <%= name %></p>
+		<table>
+			<thead>
+			<tr>
+			<th></th>
+			<th>Times</th>
+			</tr>
+			</thead>
+			<tbody id="times"></tbody>
+		</table>
+		<p>Session Mean: <%= pretty(mean) %></p>
+	</script>
+
+	<script id="sessionRowTemplate" type="text/template">
+		<tr>
+		<td><%= index %></td>
+		<td><%= time %></td>
+		</tr>
 	</script>
 
 	<script id="timerTemplate" type="text/template">
 		<span id="time"><%= pretty(time) %></span>
 	</script>
+
 	
 </head>
 <body>
-	<div id="timeContainer" class="container">
-		
-	</div>
+	
+	<div id="timeContainer" class="container"></div>
 	<div id="timer" class="container"></div>
-	<script src="timer.js"></script>
+	<script type="text/jsx" src="timer.js"></script>
 </body>
 </html>
