@@ -75,8 +75,9 @@ function clearInterval(interval) {
 window.App = {
 	Models: {},
 	Collections: {},
-	Views: {},
 }
+
+// Time
 
 App.Models.Time = Backbone.Model.extend( {
 	defaults: {
@@ -86,26 +87,13 @@ App.Models.Time = Backbone.Model.extend( {
 	}
 });
 
-App.Views.Time = Backbone.View.extend({
-	tagName: 'span',
-	template: _.template($('#timeTemplate').html()),
-
-	events: {'click .Delete': 'delete'},
-	initialize: function (options) {
-		this.session = options.session;
-	},
-
-	render: function() {
-		this.$el.html(this.template(this.model.toJSON()));
-		return this;
-	},
-
-	delete: function (e) {
-		this.model.collection.remove(this.model);
-		this.remove();
-		this.unbind();
+var Time = React.createClass({
+	render: function () {
+		return (<span>{pretty(this.props.model.time)}</span>);
 	}
 });
+
+// Session
 
 App.Collections.Session = Backbone.Collection.extend({
 	defaults: {
@@ -119,49 +107,53 @@ App.Collections.Session = Backbone.Collection.extend({
 			total += i.attributes.time;
 		});
 		return total != 0 ? total / this.length : 0;
+	},
+
+	addTime: function (time) {
+		this.add({time: time});
 	}
+
 });
 
-App.Views.Session = Backbone.View.extend({
-	tagName: 'table',
-
-	template: _.template($("#sessionTemplate").html()),
-	rowTemplate: _.template($("#sessionRowTemplate").html()),
-
-	initialize: function () {
-		this.collection.bind('change', _.bind(this.render, this));
-
-		this.$el.append(this.render().el);
-		
+var Session = React.createClass({
+	componentDidMount: function() {
+		this.props.collection.on('add', function (e) {
+			this.forceUpdate();
+		}.bind(this));
 	},
 
 	render: function () {
-		this.$el.html(this.template({mean: this.collection.mean()}, this.collection.toJSON()));
-		this.collection.each(function(time, index) {
-			this._addModel(time, index);
-		}, this);
+		var times = this.props.collection.length, mean = this.props.collection.mean();
+		var timeList = this.props.collection.map(function (key, index) {
+			console.log(key, index);
+			return (<tr><td>{index}</td><td>{pretty(key.attributes.time)}</td></tr>);
+		});
 
-		return this;
-	},
-
-	add: function (time) {
-		var timeModel = new App.Models.Time(time);
-		this.collection.push(timeModel);
-		// this._addModel(timeModel, this.collection.length-1);
-
-		this.collection.trigger('change');
-	},
-
-	_addModel: function (timeModel, index) {
-		var timeView = new App.Views.Time({model: timeModel, session: this.collection});
-		var time = timeView.template(timeView.model.toJSON())
-		var row = this.rowTemplate({index: index, time: time});
-		$("#times").append(row);
+		var name = '3x3';
+		return (
+				<table>
+				<caption>Session: {name}</caption>
+					<thead>
+				  		<tr>
+							<th></th>
+							<th>Time</th>
+						</tr>
+					</thead>
+					<tbody id="times">{timeList}</tbody>
+					<tfoot>
+						<tr>
+							<th colSpan="2">Mean of {times} = {pretty(mean)}</th>
+						</tr>
+					</tfoot>
+				</table>);
 	}
 });
 
-var session = new App.Collections.Session([]);
-var sessionView = new App.Views.Session({el: $("#timeContainer"), collection: session});
+
+var session = new App.Collections.Session();
+React.render(<Session collection={session}/>, document.getElementById("session"));
+
+// Timer
 
 App.Models.Timer = Backbone.Model.extend({
 	defaults: {
@@ -177,6 +169,7 @@ App.Models.Timer = Backbone.Model.extend({
 		if (options.addTime)
 			this.addTime = options.addTime;
 	},
+
 	start: function () {
 		if (!this.active) {
 			this.active = true;
@@ -184,6 +177,7 @@ App.Models.Timer = Backbone.Model.extend({
 			this.timerObj = setInterval(_.bind(this.tick, this), 10);
 		}
 	},
+
 	stop: function() {
 		if (this.active) {
 			this.active = false;
@@ -200,45 +194,37 @@ App.Models.Timer = Backbone.Model.extend({
 	}
 });
 
-
 var Timer = React.createClass({
 	style: {fontSize: '48px', margin: '2px'},
 	
-	componentDidMount: function() {},
+	getInitialState: function() {
+		return {timing: false, down: false};
+	},
 
-	render: function() {
-		console.log(this);
-		var style = {color: this.props.down?'green':'black'};
-		return (<p style={_.extend(style, this.style)}>{pretty(this.props.time)}</p>);
-	}
-});
-
-App.Views.Timer = Backbone.View.extend({
-	template: _.template($('#timerTemplate').html()),
-
-	initialize: function () {
+	componentDidMount: function() {
 		$(document).bind('keyup', _.bind(this.keyUp, this));
 		$(document).bind('keydown', _.bind(this.keyDown, this));
-
-		this.model.bind('change', _.bind(this.render, this));
-		this.$el.append(this.render().el);
+		this.props.model.on('change', function () {
+			this.forceUpdate();
+		}.bind(this));
 	},
-	keyDown: function (e) {
+	
+	keyDown: function(e) {
 		if (e.keyCode == 32) {
 			if (this.timing) {
-				this.model.stop();
-			} else {
-				this.down = true;
-			}
+				this.props.model.stop();
+			} else
+				this.setState({down: true});
 		}
 		this.render();
 	},
+
 	keyUp: function (e) {
 		if (e.keyCode == 32) {
 			if (!this.timing) {
-				this.model.start();
-				this.down = false
+				this.props.model.start();
 				this.timing = true;
+				this.setState({down: false});
 			} else {
 				this.timing = false;
 			}
@@ -246,15 +232,34 @@ App.Views.Timer = Backbone.View.extend({
 		this.render();
 	},
 
-	render: function () {
-		React.render(<Timer time={this.model.time} down={this.down}/>, this.el);
-		return this;
+	render: function() {
+		var style = {color: this.state.down?'green':'black'};
+		return (<p style={_.extend(style, this.style)}>{pretty(this.props.model.time)}</p>);
 	}
 });
 
-function AddTime(time) {
-	sessionView.add({time: time});
-}
+var timer = new App.Models.Timer({accuracy: 2, input: 'timer', inspection: 15, phase: 1, addTime: _.bind(session.addTime, session)});
+React.render(<Timer model={timer}/>, document.getElementById('timer'));
 
-var timer = new App.Models.Timer({accuracy: 2, input: 'timer', inspection: 15, phase: 1, addTime: AddTime});
-var timerView = new App.Views.Timer({el: $("#timer"), model: timer});
+// var Header = React.createClass({
+// 	childContextTypes: {
+// 		muiTheme: React.PropTypes.object
+// 	},
+
+// 	getChildContext: function() {
+// 		return {
+// 			muiTheme: ThemeManager.getCurrentTheme()
+// 		};
+// 	},
+
+// 	componentWillMount: function() {
+// 		ThemeManager.setPalette({
+// 			accent1Color: Colors.deepOrange500
+// 		});
+// 	},
+
+// 	render: function() {
+// 		return (<div></div>);
+// 	}
+
+// });
