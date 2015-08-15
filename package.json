@@ -41,8 +41,7 @@
     "yeticss": "^7.0.3"
   },
   "pre-commit": [
-    "lint",
-    "build"
+    "lint"
   ],
   "devDependencies": {
     "validate-caleb": "file:../../Projects/tools/validate-caleb"
