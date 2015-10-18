@@ -39,11 +39,5 @@
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1",
     "yeticss": "^7.0.3"
-  },
-  "pre-commit": [
-    "lint"
-  ],
-  "devDependencies": {
-    "validate-caleb": "file:../../Projects/tools/validate-caleb"
   }
 }

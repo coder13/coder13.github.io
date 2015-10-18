@@ -6,22 +6,26 @@ var SettingsPage = require('./pages/settings.js');
 
 module.exports = Router.extend({
     routes: {
-        '': 'timer',
+        '': 'home',
         'timer': 'timer',
         'settings': 'settings'
     },
 
-    index: function () {
+    home () {
+
+    },
+
+    index () {
         React.render(<IndexPage/>, document.body);
         console.log('index');
     },
 
-    timer: function () {
+    timer () {
         React.render(<TimerPage/>, document.body);
         console.log('timer');
     },
 
-    settings: function () {
+    settings () {
         React.render(<SettingsPage/>, document.body);
         console.log('settings');
     }

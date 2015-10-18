@@ -1,4 +1,4 @@
-require('./styles/main.styl');
+require('./styles/main.css');
 var Router = require('./router');
 var App = require('ampersand-app');
 var Me = require('./models/me');
