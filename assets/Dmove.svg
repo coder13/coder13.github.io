@@ -41,14 +41,14 @@
 		<polygon fill='#0000F2' stroke='#000000'  points='-0.23182332941,0.459880027528 -0.0187964861684,0.599911682184 -0.0187964861684,0.830168512613 -0.223701126327,0.686272501836'/>
 	</g>
 	<g style='opacity:1;stroke-opacity:1;stroke-width:0.04;stroke-linecap:round'>
-		<path d="M -0.125309907789,0.645024270071 L -0.578883035911,0.336459840042"
+		<path d="M -0.578883035911,0.336459840042 L -0.125309907789,0.645024270071"
 			style="fill:none;stroke:#808080;stroke-opacity:1" />
-		<path transform=" translate(-0.578883035911,0.336459840042) scale(0.011) rotate(214.227336054)"
+		<path transform=" translate(-0.125309907789,0.645024270071) scale(0.011) rotate(34.2273360539)"
 			d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z"
 			style="fill:#808080;stroke-width:0;stroke-linejoin:round"/>
-		<path d="M 0.575450836732,0.334088277796 L 0.12053214127,0.642751119411"
+		<path d="M 0.12053214127,0.642751119411 L 0.575450836732,0.334088277796"
 			style="fill:none;stroke:#808080;stroke-opacity:1" />
-		<path transform=" translate(0.12053214127,0.642751119411) scale(0.011) rotate(145.843064083)"
+		<path transform=" translate(0.575450836732,0.334088277796) scale(0.011) rotate(-34.1569359172)"
 			d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z"
 			style="fill:#808080;stroke-width:0;stroke-linejoin:round"/>
 	</g>

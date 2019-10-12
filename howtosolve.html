@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 <style>
 
+html, body {
+  font-size: .85em;
+}
+
 span.alg {
   border-radius: 4px;
   padding-left: .25em;
@@ -23,6 +27,38 @@ span.alg {
 <body>
 <section class="section">
 <div class="content">
+  <h1> Anatomy of a Cube</h1>
+
+   <h3>Centers</h3>
+   <div class="columns is-mobile">
+  <div class="column  is-one-fifth">
+    <img style="height: 5em;" src="/assets/Centers.svg"/>
+  </div>
+  <div class="column">
+    <p>The cube has 6 center pieces. They form a fixed frame around which the other pieces move. The color of the center sticker determines the color of the face.</p>
+  </div>
+  </div>
+
+   <h3>Corners</h3>
+   <div class="columns is-mobile">
+  <div class="column  is-one-fifth">
+    <img style="height: 5em;" src="/assets/Centers.svg"/>
+  </div>
+  <div class="column">
+    <p>A piece with three stickers. The cube has 8 corner pieces.</p>
+  </div>
+  </div>
+
+   <h3>Edges</h3>
+   <div class="columns is-mobile">
+  <div class="column  is-one-fifth">
+    <img style="height: 5em;" src="/assets/Edges.svg"/>
+  </div>
+  <div class="column">
+    <p>A piece with two stickers. It is solved when both stickers match their neighboring centre pieces. The cube has 12 edges in total.</p>
+  </div>
+  </div>
+   
   <h1>Notation</h1>
   <table>
    <tbody>
@@ -55,7 +91,7 @@ span.alg {
 	</li>
 	</ol>
 <h1>Cross</h1>
-<img style="height: 6em;" src="/assets/Cross.svg"/>
+<img style="height: 10em;" src="/assets/Cross.svg"/>
 <p>Solve the 4 edges around the white center. Split up this step by first putting the 4 white edges around the yellow center making a "daisy", then solving them into their appropriate spot.</p>
 
 <h1>Bottom Corners</h1>
