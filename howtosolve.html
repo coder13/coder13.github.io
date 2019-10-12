@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=.75">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My own personal beginner's method for solving a Rubik's Cube</title>
 <!-- Google Fonts -->
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -9,9 +10,36 @@
 <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
 <!-- Bulma CSS minified -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+<style>
+
+span.alg {
+  border-radius: 4px;
+  padding-left: .25em;
+  padding-right: .25em;
+  background-color: #efefef;
+}
+</style>
 </head>
 <body>
+<section class="section">
 <div class="content">
+  <h1>Notation</h1>
+  <table>
+   <tbody>
+   <tr><td>Right:<br><span class="alg">R</span></td><td><img style="height: 6em;" src="/assets/Rmove.svg"/>
+   <td>Left:<br><span class="alg">L</span></td><td><img style="height: 6em;" src="/assets/Lmove.svg"/></tr>
+   <tr><td>Up:<br><span class="alg">U</span></td><td><img style="height: 6em;" src="/assets/Rmove.svg"/>
+   <td>Down:<br><span class="alg">D</span></td><td><img style="height: 6em;" src="/assets/Dmove.svg"/></tr>
+   <tr><td>Front:<br><span class="alg">F</span></td><td><img style="height: 6em;" src="/assets/Fmove.svg"/>
+   <td>Back:<br><span class="alg">B</span></td><td><img style="height: 6em;" src="/assets/Bmove.svg"/></tr>
+   </tbody>
+  </table>
+  <p>Normal direction is clockwise looking at the face.<br>
+  Counter-clockwise is donated with an apostrophe like so: <span class="alg">R'</span><br>
+  <span class="alg">R2</span> would mean doing <span class="alg">R'</span> twice
+  </p>
+ 
+  <h1> Steps </h1>
   <ol type="1">
     <li>Cross</li>
     <li>Bottom Corners</li>
@@ -26,11 +54,142 @@
       </ol>
 	</li>
 	</ol>
+<h1>Cross</h1>
+<img style="height: 6em;" src="/assets/Cross.svg"/>
+<p>Solve the 4 edges around the white center. Split up this step by first putting the 4 white edges around the yellow center making a "daisy", then solving them into their appropriate spot.</p>
 
-<h2>Cross</h2>
-<h2>Bottom Corners</h2>
-<h2>Middle Edges</h2>
-<h2>Last Layer</h2>
+<h1>Bottom Corners</h1>
+<p>Hence forth, white should remain on the bottom.</p>
+
+<div class="columns is-mobile">
+  <div class="column  is-one-fourth">
+    <img style="height: 5em;" src="/assets/Insert.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">R U R'</span>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column  is-one-fourth">
+    <img style="height: 5em;" src="/assets/LeftInsert.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">F' U' F</span>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column  is-one-fourth">
+    <img style="height: 5em;" src="/assets/BottomCornerUp.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">R U2 R'</span>
+  </div>
+</div>
+
+<h1>Middle Edges</h1>
+
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/RightInsertEdge.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">(U R U' R')<br>spin right<br>(U' L' U L)</span>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/LeftInsertEdge.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">(U' L' U L)<br>spin left<br>(U R U' R')</span>
+  </div>
+</div>
+
+<h1>Last Layer</h1>
+<h5>Orient Edges</h5>
+<p>Sexy move: <span class="alg">R U R' U'</span><br>
+Edge flip alg: <span class="alg">F (sexy) F'</span>
+</p>
+
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/NoEdgesOriented.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">F (sexy) F'</span>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/LEdges.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">F (sexy) F'</span>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/LineEdges.svg"/>
+  </div>
+  <div class="column">
+    <span class="alg">F (sexy) F'</span>
+  </div>
+</div>
+
+<h5>Orient Corners</h5>
+<p>Sune: <span class="alg">(R U R') U (R U2 R')</span></p>
+
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/NoCornersOriented.svg"/>
+  </div>
+  <div class="column">
+    <p>Apply Sune</p>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/2CornersOriented.svg"/>
+  </div>
+  <div class="column">
+    <p>Apply Sune</p>
+  </div>
+</div>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/1CornerOriented.svg"/>
+  </div>
+  <div class="column">
+    <p>Apply Sune</p>
+  </div>
+</div>
+
+<h5>Solve Corners</h5>
+<p>A perm: <span class="alg">R' F R' B2 R F' R' B2 R2</span>
+
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/Tperm.svg"/>
+  </div>
+  <div class="column">
+    <p>With headlights in front, apply alg</p>
+  </div>
+</div>
+<h5>Solve Edges</h5>
+<p>U perm: <span class="alg">R2 U' (F B') R2 (B F') U R2</span><br>
+If no edges are solved, apply the algorithm from any angle. 
+If 1 edge is solved, put it on the left
+</p>
+<div class="columns is-mobile">
+  <div class="column is-one-fourth">
+    <img style="height: 5em;" src="/assets/Uperm.svg"/>
+  </div>
+  <div class="column">
+    <p>Apply the alg</p>
+  </div>
+</div>
+
+</section>
 </div>
 </body>
 </html>
