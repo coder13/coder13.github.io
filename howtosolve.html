@@ -67,7 +67,7 @@ span.alg {
       <td>Left:<br><span class="alg">L</span></td>
       <td><img style="height: 6em;" src="/assets/Lmove.svg"/></tr>
       <tr><td>Up:<br><span class="alg">U</span></td>
-      <td><img style="height: 6em;" src="/assets/Rmove.svg"/>
+      <td><img style="height: 6em;" src="/assets/Umove.svg"/>
       <td>Down:<br><span class="alg">D</span></td>
       <td><img style="height: 6em;" src="/assets/Dmove.svg"/></tr>
       <tr><td>Front:<br><span class="alg">F</span></td>
@@ -145,7 +145,7 @@ Start by picking a corner to solve, then put it on top of the spot it belongs. T
     <img style="height: 5em;" src="/assets/RightInsertEdge.svg"/>
   </div>
   <div class="column">
-    <span class="alg">(U R U' R')<br>spin right<br>(U' L' U L)</span>
+    <span class="alg">(U R U' R')<br>spin clockwise<br>(U' L' U L)</span>
   </div>
 </div>
 <div class="columns is-mobile">
@@ -156,13 +156,14 @@ Start by picking a corner to solve, then put it on top of the spot it belongs. T
     <img style="height: 5em;" src="/assets/LeftInsertEdge.svg"/>
   </div>
   <div class="column">
-    <span class="alg">(U' L' U L)<br>spin left<br>(U R U' R')</span>
+    <span class="alg">(U' L' U L)<br>spin counter-clockwise<br>(U R U' R')</span>
   </div>
 </div>
 
 <h1>Last Layer</h1>
 
 <h5>Orient Edges</h5>
+<img style="height:10em;" src="/assets/EODone.svg"/>
 <p>This step orients the 4 edges on top. "Oriented" means the yellow sticker is facing up."<br>
 You will apply this algorithm a maxium of 3 times starting by rotating the top face till it matches the image below, then do the algorithm.<br>
 </p>
@@ -206,6 +207,7 @@ Edge flip alg: <span class="alg">F (sexy) F'</span>
 </div>
 
 <h5>Orient Corners</h5>
+<img style="height:10em;" src="/assets/CODone.svg"/>
 <p>This step orients the 4 corners on top. "Oriented" means the yellow sticker is facing up."<br>
 You will apply the sune algorithm a maxium of 3 times starting by rotating the top face till it matches the image below, then do the algorithm.<br>
 Start be looking at how many corners are already oriented. Then, refer to the diagrams below to look at how the front left corner should be oriented.</p>
@@ -247,6 +249,7 @@ Start be looking at how many corners are already oriented. Then, refer to the di
 </div>
 
 <h5>Solve Corners</h5>
+<img style="height:10em;" src="/assets/CPDone.svg"/>
 <p>This step swaps the corners till they are solved. You will do this algorithm a maximum of 2 times. You are looking for headlights. Headlights are 2 matching stickers on the same face. If there are no headlights, you will apply the alg from any angle, then apply it again when the headlights in the back
 A perm: <span class="alg">R' F R' B2 R F' R' B2 R2</span>
 
@@ -259,7 +262,8 @@ A perm: <span class="alg">R' F R' B2 R F' R' B2 R2</span>
   </div>
 </div>
 <h5>Solve Edges</h5>
-<p>U perm: <span class="alg">R2 U' (F B') R2 (B F') U R2</span><br>
+<img style="height:10em;" src="/assets/DONE.svg"/>
+<p>U perm: <span class="alg">R2 U' (F B') R2 (B F') U' R2</span><br>
 If no edges are solved, apply the algorithm from any angle.
 If 1 edge is solved, put it on the left
 </p>
