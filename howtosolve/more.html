@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My own personal beginner's method for solving a Rubik's Cube</title>
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <!-- Bulma CSS minified -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+    html, body {
+      font-size: 1em;
+    }
+
+    td {
+      vertical-align: middle !important;
+    }
+
+    .lessPadding {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      width: 4em;
+    }
+  </style>
+</head>
+
+<body>
+<section id="app" class="section">
+<div class="container is-mobile">
+<div class="content">
+  <h1>4 look last layer</h1>
+  <p>The idea around these 4 steps is that you learn enough algorithms to use one for each step. You will, with 1 algorithm each, orient the edges, orient the corners, permute the corners, and permute the edges</p>
+
+  <h3>Orient Edges of Last Layer</h3>
+
+  <table class="table is-narrow">
+    <tbody>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=FRUR'U'F'FwRUR'U'Fw'&stage=oell"/>
+        </td>
+        <td width="400px"><alg>F <span class="blue">(R U R' U')</span> F' Fw <span class="blue">(R U R' U')</span> Fw'</alg></td>
+      </tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=FRUR'U'F'&stage=oell"/>
+        </td>
+        <td width="400px"><alg>F <span class="blue">(R U R' U')</span> F'</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=FwRUR'U'Fw'&stage=oell"/>
+        </td>
+        <td width="400px"><alg>Fw <span class="blue">(R U R' U')</span> Fw'</alg></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Orient Corners of Last Layer</h3>
+
+  <table class="table is-narrow">
+    <tbody>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=RUR'URU2R'&stage=oll"/>
+        </td>
+        <td width="400px"><alg>R U R' U R U2 R'</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=U2RU2R'U'RU'R'&stage=oll"/>
+        </td>
+        <td width="400px"><alg>[U2] R U2 R' U' R U' R'</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=RUR'U'L'URU'R'L&stage=oll"/>
+        </td>
+        <td width="400px"><alg><span class="blue">(R U R' U')</span> L' <span class="blue">(U R U' R')</span> L</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=L'RUR'U'LURU'R'&stage=oll"/>
+        </td>
+        <td width="400px"><alg>L' <span class="blue">(R U R' U')</span> L <span class="blue">(U R U' R')</span></alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=R2DR'U2RD'R'U2R'&stage=oll"/>
+        </td>
+        <td width="400px"><alg>R2 D R' U2 R D' R' U2 R'</span></alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=FwRUR'U'Fw'FRUR'U'F'&stage=oll"/>
+        </td>
+        <td width="400px">Fw <span class="blue">(R U R' U')</span> Fw' F <span class="blue">(R U R' U')</span> F'</td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=FRUR'U'RUR'U'RUR'U'F'&stage=oll"/>
+        </td>
+        <td width="400px">F <span class="blue">(R U R' U')3</span> F'</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Permute Corners of Last Layer</h3>
+
+  <table class="table is-narrow">
+    <tbody>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=R'FR'B2RF'R'B2 R2&stage=cll"/>
+        </td>
+        <td width="300px"><alg>R' F R' B2 R F' R' B2 R2</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=F R U' R' U' R U R' F' R U R' U' R' F R F'&stage=cll"/>
+        </td>
+        <td width="300px"><alg>F (R U' R' U') (R U R' F') <span class="blue">(R U R' U')</span> (R' F R F')</alg></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Permute Edges of Last Layer</h3>
+
+  <table class="table is-narrow">
+    <tbody>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=R2U'FB'R2F'BU'R2&stage=ll"/>
+        </td>
+        <td width="300px"><alg>R2 U' (F B') R2 (F' B) U' R2</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=R2UFB'R2F'BUR2&stage=ll"/>
+        </td>
+        <td width="300px"><alg>R2 U (F B') R2 (F' B) U R2</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=M2U'M2U2M2U'M2&stage=ll"/>
+        </td>
+        <td width="300px"><alg>M2 U' M2 U2 M2 U' M2</alg></td>
+      </tr>
+      <tr>
+        <td class="lessPadding">
+          <img style="height: 4em;" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200&view=plan&case=M2U'M2U'M'U2M2U2M'&stage=ll"/>
+        </td>
+        <td width="300px"><alg>M2 U' M2 U' M' U2 M2 U2 M'</alg></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>
+</section>
+
+<script>
+  Vue.component('alg', {
+    template: '<span class="alg"><slot></slot></span>'
+  })
+
+  var app = new Vue({
+    el: '#app',
+  });
+</script>
+</body>
+</html>
