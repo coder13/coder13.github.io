@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "./palette.scss";
+
+$family-sans-serif: "Roboto", BlinkMacSystemFont, -apple-system, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+$blue: #6984AE;
+
+$primary: $color1;
+$link: $color3;
+$info: $color4;
+$info-invert: #333333;
+
+$sexy: $blue;
+
+@import "../node_modules/bulma/bulma";
+
+span.alg {
+  font-family: "Roboto Mono", monospace;
+  padding: .25em;
+  border-radius: 4px;
+  padding-left: .25em;
+  padding-right: .25em;
+  background-color: #efefef;
+}
+
+.blue {
+  color: $sexy;
+}
+
+td {
+  vertical-align: middle;
+}

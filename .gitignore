@@ -1,3 +1,13 @@
-_site
+# Files
+
+.DS_Store
+.ruby-version
+npm-debug.log
+
+# Folders
+
+.idea/
 .sass-cache
-.jekyll-metadata
+_gh_pages
+_site
+node_modules
