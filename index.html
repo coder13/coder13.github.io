@@ -10,53 +10,7 @@
     <!-- CSS Reset -->
     <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
 
-    <!-- Milligram CSS minified -->
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-
-    <style>
-      html, body {
-        margin: 1em;
-      }
-
-      .header {
-        display: flex;
-        flex-direction: row;
-      }
-      
-      .header_left {
-        width: 20%;
-      }
-      
-      .avatar {
-        width: 30vw;
-      }
-      
-      .header_right {
-        margin-left: 1em;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 80%;
-      }
-
-      section {
-        margin: 2em 0;
-        font-size: 16px;
-      }
-      
-      .school {
-        margin-bottom: 1em;
-      }
-      
-      .job {
-        margin-bottom: 1em;
-      }
-      
-      .project {
-        margin-bottom: 1em;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
 
     <!-- Vue.JS -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -64,6 +18,10 @@
   <style>
       body {
         font-size: 14px;
+      }
+
+      small {
+        font-size: 0.85rem;
       }
     </style>
 
@@ -77,24 +35,25 @@
             <img :src="github.avatar_url" class="avatar"/>
           </div>
           <div class="header_right">
-            <h1>Caleb Hoover</h1>
-            <h4><a href="https://github.com/coder13">Github</a> | <a href="mailto:choover11@gmail.com">Email</a></h4>
+            <h1 class="is-size-1 title">Caleb Hoover</h1>
+            <h4 class="is-size-4"><a href="https://github.com/coder13">Github</a> | <a href="mailto:choover11@gmail.com">Email</a></h4>
           </div>
         </div>
         <hr>
 
         <section>
-          <h3>Education</h3>
-
+          <h3 class="is-size-3">Education</h3>
+          <br>
           <div v-for="school in schools" :key="school.name" class="school">
-            <b><a :href="school.url">{{school.name}}</a></b><br>
+            <p><a :href="school.url" class="is-size-5 has-text-weight-bold">{{school.name}}</a></p>
             <small><i>{{school.degree}}</i></small><br>
             <small>{{school.date}}</small>
           </div>
+          <br>
         </section>
 
         <section>
-          <h3>Experience</h3>
+          <h3 class="is-size-3">Experience</h3>
 
           <div v-for="job in jobs" :key="job.company" class="job">
             <b><a :href="job.url">{{job.company}}</a></b>
@@ -103,28 +62,30 @@
               <div v-for="position in job.positions" :key="position.id">
                 <small>{{position.date}}</small><br>
                 <small v-if="position.title"><i>{{position.title}}</i></small>
-                {{position.description}}
+                <span v-html="position.description"></span>
+
               </div>
             </div>
           </div>
         </section>
 
         <section>
-          <h3>Projects</h3>
+          <h3 class="is-size-3">Projects</h3>
 
           <div v-for="project in projects" class="project">
             <b><a :href="project.url">{{project.name}}</a><span v-if="project.website"><a :href="project.website">  ({{project.website}})</a></span></b><br>
-            
-            <small>Language: <a :href="project.data.languages_url">{{project.data.language}}</a></small><br>
-            <small>Stars: {{project.data.stargazers_count}}</small><br>
             <p v-html="project.description"></p>
+            
+            <small class="small">Language: <a :href="project.data.languages_url">{{project.data.language}}</a></small><br>
+            <small class="small">Stars: {{project.data.stargazers_count}}</small><br>
+            <small class="small">Forks: {{project.data.forks}}</small><br>
           </div>
             
         </section>
         <b style="font-size: 1.5em"><a :href="github.repos_url">{{github.public_repos}} other projects...</a></b>
 
         <section>
-          <h3>Skills</h3>
+          <h3 class="is-size-3">Skills</h3>
 
           <ul>
             <li>Javascript / Node.js Full stack development</li>
@@ -135,7 +96,7 @@
         </section>
         
         <section>
-          <h3>Volunteer</h3>
+          <h3 class="is-size-3">Volunteer</h3>
           
           <p>
             <b><a href="http://worldcubeassociation.com">World Cube Association</a></b><br>

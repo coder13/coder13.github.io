@@ -7,10 +7,13 @@ $family-sans-serif: "Roboto", BlinkMacSystemFont, -apple-system, "Segoe UI", "Ox
 
 $blue: #6984AE;
 
-$primary: $color1;
-$link: $color3;
-$info: $color4;
-$info-invert: #333333;
+$body-font-size: 1.125em;
+$small-font-size: 1em;
+
+// $primary: $color1;
+// $link: $color3;
+// $info: $color4;
+// $info-invert: #333333;
 
 $sexy: $blue;
 
@@ -31,4 +34,42 @@ span.alg {
 
 td {
   vertical-align: middle;
+}
+
+html, body {
+  margin: 1em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.header_left {
+  width: 20%;
+}
+
+.avatar {
+  width: 30vw;
+}
+
+.header_right {
+  margin-left: 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+
+.school {
+  margin-bottom: 1em;
+}
+
+.job {
+  margin-bottom: 1em;
+}
+
+.project {
+  margin-bottom: 1em;
 }
