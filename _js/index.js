@@ -28,6 +28,17 @@ new Vue({
           description: 'Summer internship developing software to analyze Node.JS programs for vulnerablities.'
         }]
       }, {
+        company: 'Central Washington University',
+        url: 'https://cwu.edu',
+        title: 'Student Software Developer',
+        positions: [{
+          id: 1,
+          date: 'December 2019 - June 2020',
+          description: 'Developed and maintained school\'s website written with drupal.' +
+          '<br/>Developed reports from internal drupal data using HTML, PHP, Mysql, and javascript (Vue.js).' +
+          '<br/>Communicated and discussed issues regarding the website and it\'s future direction.'
+        }]
+      }, {
         company: 'Fred Meyer',
         url: 'https://fredmeyer.com',
         title: 'Cashier',
