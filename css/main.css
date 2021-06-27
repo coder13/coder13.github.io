@@ -7002,3 +7002,32 @@ html, body {
 
 .project {
   margin-bottom: 1em; }
+
+body, html {
+  background: white; }
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+
+section:hover {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2); }
+
+.cashapp-img {
+  width: 260px;
+  height: 260px;
+  flex: 0; }
+
+.crypto-address {
+  user-select: all;
+  border-radius: 4px;
+  padding: 0.5rem; }
+
+dd {
+  margin-bottom: 0.5em; }
