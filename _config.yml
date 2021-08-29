@@ -30,15 +30,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://calebhoover.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 social:
-  github:  coder13
+  github: coder13
+  linkedin: caleb-hoover
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
-
-minima:
-  skin: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default.
