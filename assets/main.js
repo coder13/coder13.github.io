@@ -10,21 +10,16 @@ new Vue({
         url: 'https://github.com/coder13/letscube',
         website: 'https://letscube.net',
         repo: 'letscube',
-        description: 'Webapp that lets people cube against each other.',
         data: {},
       }, {
         name: 'Carat',
         url: 'https://github.com/coder13/carat',
         repo: 'carat',
-        description: 'Scans Node.JS and reports vulnerablities in them. Extensible and powerful enough to detect any code pattern desired.',
         data: {},
       }, {
         name: 'Fantasy Cubing',
         url: 'https://github.com/coder13/fantasycubing',
         repo: 'fantasycubing',
-        description: `Fantasy Sports website based on the results from Rubik's Cube competitions ran by the <a href="https://worldcubeassociation.org">World Cube Association</a>. Allows players to make teams each week of competitors in competitions and collect points based on their results.
-            <br>
-            Technologies used: MySQL, Javascript / Node.js, HTML5, Webpack, Hapi, React, Ampersand.js, Semantic-UI`,
         data: {},
       }],
       github: {
@@ -35,13 +30,11 @@ new Vue({
   created () {
     // fetch the data when the view is created and the data is
     // already being observed
-    this.fetchData().then(() => {
-      console.log(this.github)
-    })
+    this.fetchData();
   },
   methods: {
     fetchData() {
-      return fetch(`${GITHUB_URL}/users/coder13`).then((data) => data.json()).then((data) => {
+      fetch(`${GITHUB_URL}/users/coder13`).then((data) => data.json()).then((data) => {
         this.github = data;
       });
 
