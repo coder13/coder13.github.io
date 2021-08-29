@@ -2,6 +2,7 @@
 layout: page
 title: Donate
 exclude: true
+permalink: /donate/
 ---
 
 {% include about.md %}
