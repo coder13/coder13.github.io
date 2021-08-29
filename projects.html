@@ -1,0 +1,26 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: page
+title: Projects
+---
+
+{% raw %}
+
+<div v-for="project in projects" class="project">
+  <b>
+    <a target="_blank" :href="project.url">{{project.name}}</a>
+    <span v-if="project.website">
+      <a target="_blank" :href="project.website">  ({{project.website}})</a>
+    </span>
+  </b>
+  <br>
+  <p v-html="project.description"></p>
+  
+  <small class="small">Language: {{project.data.language}}</small><br>
+  <small class="small">Stars: {{project.data.stargazers_count}}</small><br>
+  <small class="small">Forks: {{project.data.forks}}</small><br>
+</div>
+  
+{% endraw %}
