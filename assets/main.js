@@ -10,6 +10,7 @@ new Vue({
         url: 'https://github.com/coder13/letscube',
         website: 'https://letscube.net',
         repo: 'letscube',
+        docs: true,
         data: {},
       }, {
         name: 'Carat',

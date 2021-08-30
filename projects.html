@@ -13,6 +13,7 @@ permalink: /projects/
       <a target="_blank" :href="project.website">  ({{project.website}})</a>
     </span>
   </h3>
+  <a v-if="project.docs" :href="`/${project.repo}`">More Information</a>
   <p v-html="project.data.description"></p>
   
   <small class="small">Language: {{project.data.language}}</small><br>
