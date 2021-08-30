@@ -1,11 +1,7 @@
-coder13.github.io
+# coder13.github.io
 
-=================
+This is my personal portfolio / blog website.
 
-My Resume webpage.
+It's built with jekyll and has dynamic content powered by vuejs
 
-Most recently rewritten with jekyll.
-
-Now powered with Vue.JS! My vue backend polls from github to autofill data and update the stars on my repos so far. My plan is to hopefully automate the entirety of it so that I only need to update a description in one place for example.
-
-I also have a few other personal pages here. The plan is to flesh this out into possibly a blog site / personal website.
+The vue code in `main.js` fetches from github to autofill project data and update the stars, language, and description on my repos so far. My plan is to hopefully automate the entirety of it so that I only need to update a description in one place for example.
