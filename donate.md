@@ -28,3 +28,4 @@ Be sure to double check the address before sending.
 - Litecoin: `ltc1qv0vzwdradqfsfvkm5lr9cr7dl63qk734azzf8w`
 - Ethereum: `0x57c56Fe80F1721A1494794dd2Eb507660E28815c`
 - Dash: `Xry782MU2qQSszTwaPncAhuEfMkBFzUhfo`
+- Nano: `nano_36uqgut7owqjs4ggmeayykh18p8xka4hjib91jteomxyna7fkeejyiqedid1`
