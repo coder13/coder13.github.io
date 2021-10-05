@@ -29,3 +29,4 @@ Be sure to double check the address before sending.
 - Ethereum: `0x57c56Fe80F1721A1494794dd2Eb507660E28815c`
 - Dash: `Xry782MU2qQSszTwaPncAhuEfMkBFzUhfo`
 - Nano: `nano_36uqgut7owqjs4ggmeayykh18p8xka4hjib91jteomxyna7fkeejyiqedid1`
+- Algo: `PYZK2CGWCEYK3V5AKCE5ADWA3KQTXJLZP32ZBLVLY4LGD2RM5NZTYPKZMI`
