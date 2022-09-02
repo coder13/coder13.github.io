@@ -4,11 +4,17 @@ new Vue({
   el: '#app',
   data () {
     return {
-      foo: 'bar',
       projects: [{
         name: 'LetsCube',
         url: 'https://github.com/coder13/letscube',
         website: 'https://letscube.net',
+        repo: 'letscube',
+        docs: true,
+        data: {},
+      }, {
+        name: 'Delegate Dashboard',
+        url: 'https://github.com/coder13/delegate-dashboard',
+        website: 'https://delegate-dashboard.netlify.app/',
         repo: 'letscube',
         docs: true,
         data: {},
