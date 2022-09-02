@@ -13,10 +13,9 @@ new Vue({
         data: {},
       }, {
         name: 'Delegate Dashboard',
-        url: 'https://github.com/coder13/delegate-dashboard',
+        url: 'https://github.com/coder13/delegateDashboard',
         website: 'https://delegate-dashboard.netlify.app/',
-        repo: 'letscube',
-        docs: true,
+        repo: 'delegateDashboard',
         data: {},
       }, {
         name: 'Carat',
