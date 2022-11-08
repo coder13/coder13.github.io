@@ -4,3 +4,15 @@
 
 @import "minima";
 @import "custom";
+
+.competition {
+  h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  &-data {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    line-height: 0.5rem;
+  }
+}

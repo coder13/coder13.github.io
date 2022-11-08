@@ -1,0 +1,21 @@
+---
+layout: page
+title: Competitions
+permalink: /competitions/
+---
+
+{% raw %}
+
+<p>The following are the list of upcoming competitions I am attending.</p>
+
+<div v-for="competition in wca.competitions" class="competition">
+  <h3>
+    <a target="_blank" :href="competition.url">{{competition.name}}</a>
+  </h3>
+  <div class="competition-data">
+    <p>Date: {{competition.start_date}}</p>
+    <p>City: {{competition.city}}</p>
+  </div>
+</div>
+
+{% endraw %}
