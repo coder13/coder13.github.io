@@ -5,7 +5,6 @@ new Vue({
   el: "#app",
   data() {
     return {
-      foo: "bar",
       projects: [
         {
           name: "LetsCube",
@@ -13,6 +12,13 @@ new Vue({
           website: "https://letscube.net",
           repo: "letscube",
           docs: true,
+          data: {},
+        },
+        {
+          name: "Delegate Dashboard",
+          url: "https://github.com/coder13/delegateDashboard",
+          website: "https://delegate-dashboard.netlify.app/",
+          repo: "delegateDashboard",
           data: {},
         },
         {
