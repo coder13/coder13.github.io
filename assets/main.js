@@ -5,32 +5,32 @@ new Vue({
   el: "#app",
   data() {
     return {
-      foo: "bar",
-      projects: [
-        {
-          name: "LetsCube",
-          url: "https://github.com/coder13/letscube",
-          website: "https://letscube.net",
-          repo: "letscube",
-          docs: true,
-          data: {},
-        },
-        {
-          name: "Carat",
-          url: "https://github.com/coder13/carat",
-          repo: "carat",
-          data: {},
-        },
-        {
-          name: "Fantasy Cubing",
-          url: "https://github.com/coder13/fantasycubing",
-          repo: "fantasycubing",
-          data: {},
-        },
-      ],
-      wca: {
-        me: {},
-        competitions: [],
+      projects: [{
+        name: 'LetsCube',
+        url: 'https://github.com/coder13/letscube',
+        website: 'https://letscube.net',
+        repo: 'letscube',
+        docs: true,
+        data: {},
+      }, {
+        name: 'Delegate Dashboard',
+        url: 'https://github.com/coder13/delegateDashboard',
+        website: 'https://delegate-dashboard.netlify.app/',
+        repo: 'delegateDashboard',
+        data: {},
+      }, {
+        name: 'Carat',
+        url: 'https://github.com/coder13/carat',
+        repo: 'carat',
+        data: {},
+      }, {
+        name: 'Fantasy Cubing',
+        url: 'https://github.com/coder13/fantasycubing',
+        repo: 'fantasycubing',
+        data: {},
+      }],
+      github: {
+        avatar_url: 'https://via.placeholder.com/460'
       },
       github: {
         avatar_url: "https://via.placeholder.com/460",
@@ -51,6 +51,7 @@ new Vue({
         });
 
       this.projects.forEach((project) => {
+<<<<<<< HEAD
         fetch(`${GITHUB_URL}/repos/coder13/${project.repo}`)
           .then((data) => data.json())
           .then((data) => {
@@ -71,4 +72,12 @@ new Vue({
         });
     },
   },
+=======
+        fetch(`${GITHUB_URL}/repos/coder13/${project.repo}`).then((data) => data.json()).then((data => {
+          project.data = data;
+        }));
+      })
+    }
+  }
+>>>>>>> c9044d18200f969ed5465fbd5e1735492a2b7a42
 });

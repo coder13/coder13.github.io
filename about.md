@@ -20,4 +20,4 @@ A couple years later, covid would help me find the time to develop and release m
 
 ## Present
 
-I'm currently focusing on joining the work force by finishing up school and applying for jobs while writing code here and there. 
+I'm currently employed at [Circle](https://circle.com)!
