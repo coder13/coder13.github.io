@@ -1,27 +1,40 @@
 <footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
-
   <div class="wrapper">
     <div class="footer-col-wrapper">
       <div class="footer-col">
         <ul class="contact-list">
-          <li><a class="u-email" href="https://github.com/{{ site.social.github }}">
-            <i class="fab fa-github fa-fw"></i>
-            {{ site.social.github }}
-          </a></li>
-          <li><a class="u-email" href="https://linkedin.com/in/{{ site.social.linkedin }}">
-            <i class="fab fa-linkedin fa-fw"></i>
-            {{ site.author.name }}
-          </a></li>
+          <li>
+            <a
+              class="u-email"
+              href="https://github.com/{{ site.social.github }}"
+            >
+              <i class="fab fa-github fa-fw"></i>
+              {{ site.social.github }}
+            </a>
+          </li>
+          <li>
+            <a
+              class="u-email"
+              href="https://linkedin.com/in/{{ site.social.linkedin }}"
+            >
+              <i class="fab fa-linkedin fa-fw"></i>
+              {{ site.author.name }}
+            </a>
+          </li>
+          <li>
+            <a
+              class="u-email"
+              href="https://{{ site.social.mastodon }}"
+              rel="me"
+              >{{ site.social.mastodon }}</a
+            >
+          </li>
         </ul>
-      
       </div>
       <div class="footer-col">
         <h2 class="footer-heading">{{ site.author.name | escape }}</h2>
         <p>{{ site.description | escape }}</p>
       </div>
     </div>
-
   </div>
-
 </footer>
