@@ -18,20 +18,20 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Caleb Hoover
+title: Cailyn Hoover
 author:
-  name: Caleb Hoover
-  email: choover11@gmail.com
+  name: Cailyn Hoover
+  email: cailyn@cailynhoover.com
 
 description: >- # this means to ignore newlines until "baseurl:"
-  I make websites, among other stuff. Writing software since I was 13. Computer science Gradudate from Central Washington University. PNW Region Lead at the World Cube Association.
+  I make websites, among other stuff. Writing software since I was 13. Computer science Graduate from Central Washington University. PNW Region Lead at the World Cube Association.
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://calebhoover.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://cailynhoover.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 social:
   github: coder13
-  linkedin: caleb-hoover
+  linkedin: cailyn-hoover
   mastodon: techhub.social/@choover11
 
 # Build settings
