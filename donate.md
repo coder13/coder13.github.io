@@ -17,7 +17,7 @@ Here are a couple easy ways:
 
 <img src="https://cash.app/qr/$kleb13?size=150&amp;margin=10" class="cashapp-img">
 
-Scan to donate via cashapp or visit [cash.app/$kleb13](https://cash.app/$kleb13)
+Scan to donate via cashapp or visit [cash.app/$kleb13](https://cash.app/$klynh13)
 
 ## Crypto
 
