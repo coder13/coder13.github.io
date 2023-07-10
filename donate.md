@@ -10,12 +10,12 @@ permalink: /donate/
 If you feel so inclined, I have a variety of ways of giving me money listed below.
 
 Here are a couple easy ways:
-- [ko-fi.com/klebh](https://ko-fi.com/klebh)
+- [ko-fi.com/klynh](https://ko-fi.com/klynh)
 - [paypal.me](https://paypal.me/fantasycubing?locale.x=en_US)
 
 ## Cashapp
 
-<img src="https://cash.app/qr/$kleb13?size=250&amp;margin=10" class="cashapp-img">
+<img src="https://cash.app/qr/$kleb13?size=150&amp;margin=10" class="cashapp-img">
 
 Scan to donate via cashapp or visit [cash.app/$kleb13](https://cash.app/$kleb13)
 
