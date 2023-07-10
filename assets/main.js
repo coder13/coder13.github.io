@@ -15,6 +15,13 @@ new Vue({
           data: {},
         },
         {
+          name: "Competition Groups",
+          url: "https://github.com/coder13/competitor-groups",
+          website: "http://competitiongroups.com/",
+          repo: "competitor-groups",
+          data: {},
+        },
+        {
           name: "Delegate Dashboard",
           url: "https://github.com/coder13/delegateDashboard",
           website: "https://delegate-dashboard.netlify.app/",
