@@ -44,6 +44,7 @@ new Vue({
       wca: {
         me: {},
         competitions: [],
+        profile: {},
       },
       github: {
         avatar_url: "https://via.placeholder.com/460",
@@ -74,13 +75,19 @@ new Vue({
       fetch(`${WCA_URL}/users/8184?upcoming_competitions=true`)
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
           this.wca.me = data.user;
           this.wca.competitions = data.upcoming_competitions.sort(
             (a, b) =>
               new Date(a.start_date).getTime() -
               new Date(b.start_date).getTime()
           );
+        });
+
+      fetch(`${WCA_URL}/persons/2016HOOV01`)
+        .then((data) => data.json())
+        .then((data) => {
+          console.log(89, data);
+          this.wca.profile = data;
         });
     },
   },

@@ -8,10 +8,15 @@ permalink: /competitions/
 
 <p>The following are the list of upcoming competitions I am attending.</p>
 
-<div v-for="competition in wca.competitions" class="competition">
-  <h3>
-    <a target="_blank" :href="competition.url">{{competition.name}}</a>
-  </h3>
+<div v-for="(competition, index) in wca.competitions" class="competition">
+  <div class="competition-header" :key="competition.id">
+    <span class="index"
+      >#{{index + 1 + (wca.profile.competition_count || 0)}}</span
+    >
+    <h3>
+      <a target="_blank" :href="competition.url">{{competition.name}}</a>
+    </h3>
+  </div>
   <div class="competition-data">
     <p>Date: {{competition.start_date}}</p>
     <p>City: {{competition.city}}</p>

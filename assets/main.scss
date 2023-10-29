@@ -6,6 +6,17 @@
 @import "custom";
 
 .competition {
+  .competition-header {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .index {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
   h3 {
     margin-bottom: 0.25rem;
   }
